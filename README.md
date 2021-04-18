@@ -55,5 +55,19 @@ Here I have demonstrated how to select features based on random shuffling on a r
 
 **Note For the demonstration, I have used Random Forests, but this selection procedure can be used with any machine learning algorithm. In fact, the importance of the features are determined specifically for the algorithm used. Therefore, different algorithms may return different subsets of important features.**
 
+### Hybrid method: Recursive feature elimination
+
+The approach consists of the following steps:
+
+1) Rank the features according to their importance derived from a machine learning algorithm: it can be tree importance or  coefficients derived from linear models.
+
+2) Remove one feature -the least important- and build a machine learning algorithm utilising the remaining features.
+
+3) Calculate a performance metric of choice: roc-auc, mse, rmse, accuracy, etc.
+
+4) If the metric decreases by more of an arbitrarily set threshold, then that feature is important and should be kept. Otherwise, we can remove that feature.
+
+5) Repeat steps 2-4 until all features have been evaluated.
+
 
 
