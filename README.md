@@ -15,18 +15,9 @@ You have to separate train and test sets first before going for feature selectio
 
 This method consists of the following steps:
 
-1) Rank the features according to their importance derived from a machine learning algorithm: it can be tree importance or coefficients from linear models.
+### Train a ML model with all features
 
-2) Build a machine learning model with only 1 feature, the most important one, and calculate the model metric for performance.
-
-3) Add one feature -the most important- and build a machine learning algorithm utilising the added and any feature from previous rounds.
-
-4) Calculate a performance metric of your choice: roc-auc, mse, rmse, accuracy, etc.
-
-5) If the metric increases by more than an arbitrarily set threshold, then that feature is important and should be kept. Otherwise, we can remove that feature.
-
-6) Repeat steps 2-5 until all features have been evaluated.
-
+1. 
 
 I call this a hybrid method because:
 
