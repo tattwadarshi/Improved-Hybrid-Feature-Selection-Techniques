@@ -4,12 +4,12 @@
 
 ## Important Note
 
-In all feature selection procedures, it is good practice to select the features by examining only the training set. And this is to avoid overfit.
-You have to separate train and test sets first before going for feature selection
+* In all feature selection procedures, it is good practice to select the features by examining only the training set. And this is to avoid overfit.
+You have to separate train and test sets first before going for feature selection.
 
-To speed things up it is recommended to apply some quick filter methods of feature selection at the initial stage right after train_test_split. We do the following
+* In practice, feature selection should be done after data pre-processing. So ideally, all the categorical variables are encoded into numbers, and then you can assess how deterministic they are of the target.
 
-* Remove constant, quasi-constand and duplicated features.
+* To speed things up it is recommended to apply some quick filter methods of feature selection at the initial stage right after train_test_split. We do the following: Remove constant, quasi-constand and duplicated features.
 
 ### Recursive feature addition
 
@@ -36,6 +36,24 @@ This method is faster than wrapper methods and often better than embedded method
 One thing to note is that the minimum drop in performance to decide if a feature should be kept is set arbitrarily. The smaller the drop the more features will be selected, and vice versa.
 
 **Model Used for Demonstration: GradientBoostingClassifier, GradientBoostingRegressor**
+
+### Feature Selection by Random Shuffling
+
+This approach of feature selection consists in random shuffling the values of a specific variable and determining how that permutation affects the performance metric of the machine learning algorithm. In other words, the idea is to permute the values of each feature, one feature at the time, and measure how much the permutation (or shuffling of its values) decreases the accuracy, or the roc_auc, or the mse of the machine learning model (or any other performance metric!). If the variables are important, a random permutation of their values will decrease dramatically any of these metrics. Contrarily, the permutation or shuffling of values should have little to no effect on the model performance metric we are assessing.
+
+The procedure goes more or less like this:
+
+- Build a machine learning model and store its performance metric
+- Shuffle 1 feature, and make a new prediction using the previous model
+- Determine the performance of this prediction
+- Determine the change in the performance of the prediction with the shuffled feature vs the original one
+- Repeat for each feature
+
+To select features, we choose those that induced a decrease in model performance, beyond an arbitrarily set threshold.
+
+Here I have demonstrated how to select features based on random shuffling on a regression and classification problem. 
+
+**Note For the demonstration, I have used Random Forests, but this selection procedure can be used with any machine learning algorithm. In fact, the importance of the features are determined specifically for the algorithm used. Therefore, different algorithms may return different subsets of important features.**
 
 
 
