@@ -7,7 +7,7 @@
 In all feature selection procedures, it is good practice to select the features by examining only the training set. And this is to avoid overfit.
 You have to separate train and test sets first before going for feature selection
 
-## To speed things up it is recommended to apply some quick filter methods of feature selection at the initial stage right after train_test_split. We do the following
+To speed things up it is recommended to apply some quick filter methods of feature selection at the initial stage right after train_test_split. We do the following
 
 * Remove constant, quasi-constand and duplicated features.
 
